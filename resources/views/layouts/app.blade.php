@@ -291,6 +291,10 @@
 
         <!-- Style 2: Dots Animation (uncomment untuk menggunakan) -->
         <div class="loading-text">Loading<span class="dots-text"></span></div>
+        <!-- Add this: -->
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
     </div>
 
     <!-- User Menu (Kiri Atas) -->
@@ -388,19 +392,23 @@
         }, 3000); // Maksimal 3 detik
 
         // Optional: Simulasi progress loading
-        document.addEventListener('DOMContentLoaded', function() {
-            const progressBar = document.querySelector('.progress-bar');
-            let progress = 0;
-            
-            const interval = setInterval(() => {
-                progress += Math.random() * 15;
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(interval);
-                }
-                progressBar.style.transform = `scaleX(${progress / 100})`;
-            }, 200);
-        });
+document.addEventListener('DOMContentLoaded', function() {
+    const progressBar = document.querySelector('.progress-bar');
+    
+    // Add null check to prevent the error
+    if (progressBar) {
+        let progress = 0;
+        
+        const interval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(interval);
+            }
+            progressBar.style.transform = `scaleX(${progress / 100})`;
+        }, 200);
+    }
+});
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.10/dayjs.min.js"></script>
