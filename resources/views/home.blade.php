@@ -16,7 +16,7 @@
 
             <!-- Social Section -->
             <div class="social-section">
-                <p class="copyright">© 2025 Hilal</p>
+                <p class="copyright">© 2025 Hilal prayogi</p>
             </div>
         </div>
     </div>
