@@ -23,17 +23,3 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
-
-# ✅ TAMBAHKAN INI DI BAWAH (sebelum </IfModule> terakhir atau di paling bawah file)
-<IfModule mod_php.c>
-    php_value upload_max_filesize 50M
-    php_value post_max_size 55M
-    php_value max_execution_time 300
-    php_value max_input_time 300
-    php_value memory_limit 256M
-</IfModule>
-
-# ✅ ATAU KALAU PAKAI PHP-FPM (lebih modern), tambahkan ini:
-<IfModule mod_fcgid.c>
-    FcgidMaxRequestLen 52428800
-</IfModule>
