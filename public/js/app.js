@@ -53,37 +53,37 @@ function createStars() {
 createStars();
 
 // Theme Toggle Function
-function toggleTheme() {
-    const body = document.body;
-    const themeToggle = document.getElementById("themeToggle");
+// function toggleTheme() {
+//     const body = document.body;
+//     const themeToggle = document.getElementById("themeToggle");
 
-    if (body.classList.contains("dark-mode")) {
-        body.classList.remove("dark-mode");
-        body.classList.add("light-mode");
-        themeToggle.textContent = "☀️";
+//     if (body.classList.contains("dark-mode")) {
+//         body.classList.remove("dark-mode");
+//         body.classList.add("light-mode");
+//         themeToggle.textContent = "☀️";
         
-        // Set light background pattern
-        body.style.backgroundImage = "url('/images/doodle-bg.png')";
-    } else {
-        body.classList.remove("light-mode");
-        body.classList.add("dark-mode");
-        themeToggle.textContent = "🌙";
+//         // Set light background pattern
+//         body.style.backgroundImage = "url('/images/doodle-bg.png')";
+//     } else {
+//         body.classList.remove("light-mode");
+//         body.classList.add("dark-mode");
+//         themeToggle.textContent = "🌙";
         
-        // Set dark background pattern
-        body.style.backgroundImage = "url('/images/doodle-bg.png')";
-    }
-}
+//         // Set dark background pattern
+//         body.style.backgroundImage = "url('/images/doodle-bg.png')";
+//     }
+// }
 
 // Set initial background on page load
-document.addEventListener('DOMContentLoaded', function() {
-    const body = document.body;
-    if (body.classList.contains("dark-mode")) {
-        body.style.backgroundImage = "url('/images/doodle-bg.png')";
-        body.style.backgroundRepeat = "repeat";
-        body.style.backgroundSize = "412.5px 749.25px";
-        body.style.backgroundAttachment = "fixed";
-    }
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//     const body = document.body;
+//     if (body.classList.contains("dark-mode")) {
+//         body.style.backgroundImage = "url('/images/doodle-bg.png')";
+//         body.style.backgroundRepeat = "repeat";
+//         body.style.backgroundSize = "412.5px 749.25px";
+//         body.style.backgroundAttachment = "fixed";
+//     }
+// });
 
 // Social Media Function
 function openSocial(platform) {
