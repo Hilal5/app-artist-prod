@@ -14,6 +14,5 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Only run WorkSeeder
-        $this->call(WorkSeeder::class);
     }
 }
