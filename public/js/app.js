@@ -3869,12 +3869,6 @@ function viewAttachment(src, type) {
                     <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/>
                 </svg>
             </button>
-            <a href="${src}" download class="attachment-modal-download">
-                <svg viewBox="0 0 24 24" width="20" height="20">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" fill="none"/>
-                </svg>
-            
-            </a>
         </div>
     `;
     
