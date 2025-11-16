@@ -3411,12 +3411,6 @@ async function loadChatMessages(userId, userName) {
                 lastMessageId = data.messages[data.messages.length - 1].id;
             }
 
-            // Update header title
-            const chatHeaderTitle = document.getElementById("chatHeaderTitle");
-            if (chatHeaderTitle) {
-                chatHeaderTitle.textContent = `Chat with ${userName}`;
-            }
-
             // ✅ SMART Auto refresh every 3 seconds (faster but smarter)
             chatRefreshInterval = setInterval(() => {
                 smartRefreshMessages();
