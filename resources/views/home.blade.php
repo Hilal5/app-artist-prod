@@ -9,7 +9,7 @@
                 <span class="greeting">hi!</span> 
                 <span class="name">i'm Hilal</span>
             </h1>
-            <p class="subtitle">illustrator, animator, and developer and still learn 😀</p>
+            <p class="subtitle">illustrator, animator, and developer</p>
             
             <!-- Navigation Component -->
             <x-navigation />
