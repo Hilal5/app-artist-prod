@@ -63,27 +63,27 @@ function toggleTheme() {
         themeToggle.textContent = "☀️";
         
         // Set light background pattern
-        // body.style.backgroundImage = "url('/images/doodle-bg.png')";
+        body.style.backgroundImage = "url('/images/doodle-bg.png')";
     } else {
         body.classList.remove("light-mode");
         body.classList.add("dark-mode");
         themeToggle.textContent = "🌙";
         
         // Set dark background pattern
-        // body.style.backgroundImage = "url('/images/doodle-bg.png')";
+        body.style.backgroundImage = "url('/images/doodle-bg.png')";
     }
 }
 
 // Set initial background on page load
-// document.addEventListener('DOMContentLoaded', function() {
-//     const body = document.body;
-//     if (body.classList.contains("dark-mode")) {
-//         body.style.backgroundImage = "url('/images/doodle-bg.png')";
-//         body.style.backgroundRepeat = "repeat";
-//         body.style.backgroundSize = "412.5px 749.25px";
-//         body.style.backgroundAttachment = "fixed";
-//     }
-// });
+document.addEventListener('DOMContentLoaded', function() {
+    const body = document.body;
+    if (body.classList.contains("dark-mode")) {
+        body.style.backgroundImage = "url('/images/doodle-bg.png')";
+        body.style.backgroundRepeat = "repeat";
+        body.style.backgroundSize = "412.5px 749.25px";
+        body.style.backgroundAttachment = "fixed";
+    }
+});
 
 // Social Media Function
 function openSocial(platform) {
@@ -3410,6 +3410,7 @@ async function loadChatMessages(userId, userName) {
             if (data.messages.length > 0) {
                 lastMessageId = data.messages[data.messages.length - 1].id;
             }
+
 
             // ✅ SMART Auto refresh every 3 seconds (faster but smarter)
             chatRefreshInterval = setInterval(() => {
