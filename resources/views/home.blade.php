@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Hilal Prayogi - Portfolio')
-
 @section('content')
     <div class="card">
         <div class="content">
@@ -16,7 +14,7 @@
 
             <!-- Social Section -->
             <div class="social-section">
-                <p class="copyright">© 2025 Hilal prayogi</p>
+                <p class="copyright">© 2025 Hilal</p>
             </div>
         </div>
     </div>

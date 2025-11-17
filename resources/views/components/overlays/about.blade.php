@@ -34,7 +34,7 @@
                 </div>
                 
                 <div class="profile-info">
-                    <h2>Hilal prayogi</h2>
+                    <h2>Hilal</h2>
                     <p class="tagline">Digital Illustrator • 2D Animator • Developer</p>
                 </div>
             </div>
