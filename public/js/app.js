@@ -5208,8 +5208,8 @@ function generateWorkHTML(work) {
     return `
         <div class="work-item" data-category="${work.category}" data-id="${
         work.id
-    }" onclick="viewWorkGallery(${work.id})">
-            <div class="work-image">
+    }">
+            <div class="work-image" onclick="viewWorkGallery(${work.id})">
                 ${
                     isVideoThumbnail
                         ? `
@@ -5255,9 +5255,13 @@ function generateWorkHTML(work) {
                 <h4>${escapeHtml(work.title)}</h4>
                 ${
                     work.description
-                        ? `<p class="work-description">${escapeHtml(
-                              work.description
-                          )}</p>`
+                        ? `
+                        <div class="description-container">
+                            <p class="work-description" onclick="toggleWorkCard(this)">
+                                ${escapeHtml(work.description)}
+                            </p>
+                        </div>
+                        `
                         : ""
                 }
                 <div class="work-meta">
@@ -5277,7 +5281,7 @@ function generateWorkHTML(work) {
                     ${
                         isAdmin
                             ? `
-                        <div class="work-actions" onclick="event.stopPropagation()">
+                        <div class="work-actions">
                             <button class="work-edit-btn" onclick="editWork(${work.id})">
                                 <svg viewBox="0 0 24 24" width="16" height="16">
                                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="currentColor" stroke-width="2" fill="none"/>
@@ -5298,6 +5302,12 @@ function generateWorkHTML(work) {
             </div>
         </div>
     `;
+}
+
+// SUPER SIMPLE VERSION
+function toggleWorkCard(descriptionElement) {
+    const workItem = descriptionElement.closest('.work-item');
+    workItem.classList.toggle('expanded');
 }
 
 // Update stats
