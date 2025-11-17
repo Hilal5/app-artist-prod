@@ -63,27 +63,27 @@ function toggleTheme() {
         themeToggle.textContent = "☀️";
         
         // Set light background pattern
-        // body.style.backgroundImage = "url('/images/doodle-bg.png')";
+        body.style.backgroundImage = "url('/images/doodle-bg.png')";
     } else {
         body.classList.remove("light-mode");
         body.classList.add("dark-mode");
         themeToggle.textContent = "🌙";
         
         // Set dark background pattern
-        // body.style.backgroundImage = "url('/images/doodle-bg.png')";
+        body.style.backgroundImage = "url('/images/doodle-bg.png')";
     }
 }
 
 // Set initial background on page load
-// document.addEventListener('DOMContentLoaded', function() {
-//     const body = document.body;
-//     if (body.classList.contains("dark-mode")) {
-//         body.style.backgroundImage = "url('/images/doodle-bg.png')";
-//         body.style.backgroundRepeat = "repeat";
-//         body.style.backgroundSize = "412.5px 749.25px";
-//         body.style.backgroundAttachment = "fixed";
-//     }
-// });
+document.addEventListener('DOMContentLoaded', function() {
+    const body = document.body;
+    if (body.classList.contains("dark-mode")) {
+        body.style.backgroundImage = "url('/images/doodle-bg.png')";
+        body.style.backgroundRepeat = "repeat";
+        body.style.backgroundSize = "412.5px 749.25px";
+        body.style.backgroundAttachment = "fixed";
+    }
+});
 
 // Social Media Function
 function openSocial(platform) {
@@ -7867,31 +7867,37 @@ class ChibiInteractive {
         }, duration);
     }
 
-    react() {
-        if (this.isReacting || this.isDragging || this.isFalling) return;
+react() {
+    if (this.isReacting || this.isDragging || this.isFalling) return;
 
-        this.isReacting = true;
-        this.chibi.classList.add("reacting");
-        this.changeGif("react");
+    this.isReacting = true;
+    this.chibi.classList.add("reacting");
+    this.changeGif("react");
 
-        this.nextMessage();
-        this.showTooltip();
-
-        const clickSound = document.getElementById("chibiClickSound");
-        if (clickSound) {
-            clickSound.currentTime = 0;
-            clickSound.volume = 0.5;
-            clickSound
-                .play()
-                .catch((e) => console.log("Sound play failed:", e));
-        }
-
-        setTimeout(() => {
-            this.chibi.classList.remove("reacting");
-            this.changeGif("walk");
-            this.isReacting = false;
-        }, 800);
+    // ✅ SET CSS VARIABLE UNTUK MEMPERTAHANKAN FLIP STATE
+    if (this.facingRight) {
+        this.chibiImg.style.setProperty('--base-transform', 'scaleX(1)');
+    } else {
+        this.chibiImg.style.setProperty('--base-transform', 'scaleX(-1)');
     }
+
+    this.nextMessage();
+    this.showTooltip();
+
+    const clickSound = document.getElementById("chibiClickSound");
+    if (clickSound) {
+        clickSound.currentTime = 0;
+        clickSound.volume = 0.5;
+        clickSound.play().catch((e) => console.log("Sound play failed:", e));
+    }
+
+    setTimeout(() => {
+        this.chibi.classList.remove("reacting");
+        this.changeGif("walk");
+        this.chibiImg.style.removeProperty('--base-transform'); // ✅ CLEANUP
+        this.isReacting = false;
+    }, 800);
+}
 
     startDrag() {
         if (this.isReacting || this.isFalling) return;

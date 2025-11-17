@@ -274,17 +274,44 @@ body.dark-mode {
 }
 
 /* Reacting State */
-.chibi-lottie.reacting img {
+/* .chibi-lottie.reacting img {
     animation: chibiReact 0.8s ease;
-}
+} */
 
-@keyframes chibiReact {
+/* @keyframes chibiReact {
     0%, 100% { transform: scale(1) rotate(0deg); }
     15% { transform: scale(1.3) rotate(-15deg); }
     30% { transform: scale(1.2) rotate(15deg); }
     45% { transform: scale(1.3) rotate(-10deg); }
     60% { transform: scale(1.2) rotate(10deg); }
     75% { transform: scale(1.1) rotate(-5deg); }
+} */
+
+/* ✅ GANTI DENGAN INI */
+.chibi-lottie.reacting img {
+    animation: chibiReact 0.8s ease;
+}
+
+/* ✅ PERBAIKI KEYFRAMES UNTUK RESPECT FLIP STATE */
+@keyframes chibiReact {
+    0%, 100% { 
+        transform: var(--base-transform, scale(1)) rotate(0deg); 
+    }
+    15% { 
+        transform: var(--base-transform, scale(1)) scale(1.3) rotate(-15deg); 
+    }
+    30% { 
+        transform: var(--base-transform, scale(1)) scale(1.2) rotate(15deg); 
+    }
+    45% { 
+        transform: var(--base-transform, scale(1)) scale(1.3) rotate(-10deg); 
+    }
+    60% { 
+        transform: var(--base-transform, scale(1)) scale(1.2) rotate(10deg); 
+    }
+    75% { 
+        transform: var(--base-transform, scale(1)) scale(1.1) rotate(-5deg); 
+    }
 }
 
 /* Walking State */
@@ -419,6 +446,14 @@ body.dark-mode {
         padding: 5px 8px;
         bottom: 90px;
     }
+}
+
+.chibi-lottie.reacting.flip img {
+    transform: scaleX(-1);
+}
+
+.chibi-lottie.reacting:not(.flip) img {
+    transform: scaleX(1);
 }
 /* enddddd */
 
