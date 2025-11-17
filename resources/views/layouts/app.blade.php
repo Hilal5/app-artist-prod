@@ -417,6 +417,6 @@ document.addEventListener('DOMContentLoaded', function() {
         dayjs.extend(window.dayjs_plugin_relativeTime);
     </script>
     
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>

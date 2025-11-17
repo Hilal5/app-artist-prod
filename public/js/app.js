@@ -1117,7 +1117,7 @@ function generateReviewHTML(review) {
     }">
             <div class="review-header">
                 <div class="reviewer-avatar">
-                    <img src="${
+                    <img loading="lazy" loading="lazy" src="${
                         review.user.avatar || "/images/profile/default-avatar.png"
                     }" alt="${review.user.name}">
                 </div>
@@ -1182,7 +1182,7 @@ function generateReviewImagesHTML(images) {
                         </div>
                     </div>
                 ` : `
-                    <img src="${filepath}" alt="Review image" onclick="viewImage('${filepath}')">
+                    <img loading="lazy" src="${filepath}" alt="Review image" onclick="viewImage('${filepath}')">
                 `;
             }).join("")}
         </div>
@@ -1226,7 +1226,7 @@ function viewImage(url) {
                     <source src="${url}" type="video/mp4">
                 </video>
             ` : `
-                <img src="${url}" style="max-width:90vw;max-height:90vh;border-radius:8px;">
+                <img loading="lazy" src="${url}" style="max-width:90vw;max-height:90vh;border-radius:8px;">
             `}
         </div>
     `;
@@ -1361,7 +1361,7 @@ function removePreviewImage(index) {
             const preview = document.createElement("div");
             preview.className = "image-preview-item";
             preview.innerHTML = `
-                <img src="${e.target.result}" alt="Preview">
+                <img loading="lazy" src="${e.target.result}" alt="Preview">
                 <button type="button" class="image-preview-remove" onclick="removePreviewImage(${i})">
                     <svg viewBox="0 0 24 24">
                         <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/>
@@ -1933,7 +1933,7 @@ function generateCommissionHTML(commission) {
                            onerror="this.style.display='none'"></video>
                 `
                         : `
-                    <img src="/storage/commissions/${firstFile}" 
+                    <img loading="lazy" src="/storage/commissions/${firstFile}" 
                          alt="${escapeHtml(commission.name)}"
                          onerror="this.src='/images/default-commission.jpg'">
                 `
@@ -2329,7 +2329,7 @@ async function loadCommissionData(id) {
                                 </div>
                             `
                                     : `
-                                <img src="/storage/commissions/${file}" alt="Current ${
+                                <img loading="lazy" src="/storage/commissions/${file}" alt="Current ${
                                           index + 1
                                       }">
                             `
@@ -2406,7 +2406,7 @@ function refreshCommissionImagesPreview() {
                     </svg>
                 </div>
             ` : `
-                <img src="${fileUrl}" alt="Preview ${index + 1}" style="width:100%;height:100%;object-fit:cover;">
+                <img loading="lazy" src="${fileUrl}" alt="Preview ${index + 1}" style="width:100%;height:100%;object-fit:cover;">
             `}
             
             <span class="image-number">${index + 1}</span>
@@ -2728,7 +2728,7 @@ function showGalleryLightbox() {
                        alt="Gallery video ${currentIndex + 1}"></video>
             `
                     : `
-                <img src="${currentImagePath}" alt="Gallery image ${currentIndex + 1}"
+                <img loading="lazy" src="${currentImagePath}" alt="Gallery image ${currentIndex + 1}"
                      onerror="this.onerror=null; this.src='/images/default-commission.jpg';">
             `
             }
@@ -2803,7 +2803,7 @@ function showGalleryLightbox() {
                         </div>
                     `
                             : `
-                        <img src="${thumbPath}" 
+                        <img loading="lazy" src="${thumbPath}" 
                              alt="Thumbnail ${index + 1}"
                              class="gallery-thumb ${index === currentIndex ? "active" : ""}"
                              onclick="goToGalleryImage(${index})"
@@ -3208,7 +3208,7 @@ async function loadConversations() {
                     conv.user_id
                 }, '${escapeHtml(conv.user_name)}', ${conv.is_online})">
                     <div class="conversation-avatar">
-                        <img src="${
+                        <img loading="lazy" src="${
                             conv.user_avatar ||
                             "/images/profile/default-avatar.png"
                         }" alt="${escapeHtml(conv.user_name)}">
@@ -3583,7 +3583,7 @@ function renderChatInterface(userName, messages, isOnline = false) {
     chatMain.innerHTML = `
         <div class="chat-header">
             <div class="chat-user-avatar">
-                <img src="/images/profile/default-avatar.png" alt="${escapeHtml(
+                <img loading="lazy" src="/images/profile/default-avatar.png" alt="${escapeHtml(
                     userName
                 )}">
                 ${isOnline ? '<span class="online-indicator"></span>' : ""}
@@ -3789,7 +3789,7 @@ function renderMessages(messages) {
                 }
                 
                 <div class="message-avatar">
-                    <img src="${avatar}" alt="${escapeHtml(msg.sender_name)}">
+                    <img loading="lazy" src="${avatar}" alt="${escapeHtml(msg.sender_name)}">
                 </div>
                 <div class="message-content">
                     ${
@@ -3846,7 +3846,7 @@ function viewAttachment(src, type) {
     
     if (type === 'image') {
         content = `
-            <img src="${src}" alt="Full view" style="max-width: 90vw; max-height: 90vh; object-fit: contain;">
+            <img loading="lazy" src="${src}" alt="Full view" style="max-width: 90vw; max-height: 90vh; object-fit: contain;">
         `;
     } else if (type === 'video') {
         content = `
@@ -4108,7 +4108,7 @@ function handleAttachmentSelect(event) {
         
         if (fileType === 'image') {
             previewContent = `
-                <img src="${e.target.result}" alt="Preview" class="preview-image">
+                <img loading="lazy" src="${e.target.result}" alt="Preview" class="preview-image">
             `;
         } else if (fileType === 'video') {
             // ✅ FIX: Video preview with poster
@@ -4987,7 +4987,7 @@ function initImageUpload() {
                             </div>
                         `
                                 : `
-                            <img src="${e.target.result}" alt="Preview ${
+                            <img loading="lazy" src="${e.target.result}" alt="Preview ${
                                       actualIndex + 1
                                   }" style="width: 100%; height: 100%; object-fit: cover;">
                         `
@@ -5055,7 +5055,7 @@ function removeImage(index) {
                             </div>
                         `
                                 : `
-                            <img src="${e.target.result}" alt="Preview ${
+                            <img loading="lazy" src="${e.target.result}" alt="Preview ${
                                       i + 1
                                   }" style="width: 100%; height: 100%; object-fit: cover;">
                         `
@@ -5173,7 +5173,7 @@ function displayWorks(works) {
     if (works.length === 0) {
         worksGrid.innerHTML = `
             <div class="empty-works">
-                <img src="/images/empty-portfolio.png" alt="No works" style="width: 200px; height: 200px; opacity: 0.7;">
+                <img loading="lazy" src="/images/empty-portfolio.png" alt="No works" style="width: 200px; height: 200px; opacity: 0.7;">
                 <h3>No works yet</h3>
                 <p>Start adding your amazing artwork!</p>
             </div>
@@ -5224,7 +5224,7 @@ function generateWorkHTML(work) {
                     </video>
                 `
                         : `
-                    <img src="${thumbnailUrl}" 
+                    <img loading="lazy" src="${thumbnailUrl}" 
                          alt="${escapeHtml(work.title)}" 
                          onerror="this.onerror=null; this.src='/images/default-commission.jpg';">
                 `
@@ -5379,7 +5379,7 @@ function filterWorks(category, event) {
         const emptyDiv = document.createElement("div");
         emptyDiv.className = "empty-works";
         emptyDiv.innerHTML = `
-            <img src="/images/empty-portfolio.png" alt="No works" style="width: 200px; height: 200px; opacity: 0.6;">
+            <img loading="lazy" src="/images/empty-portfolio.png" alt="No works" style="width: 200px; height: 200px; opacity: 0.6;">
             <h3>No ${categoryName} Yet</h3>
             <p>This category is empty. Check back later for amazing artworks!</p>
         `;
@@ -5561,7 +5561,7 @@ async function loadWorkData(id) {
                         const mediaItem = document.createElement('div');
                         mediaItem.className = 'media-preview-item existing-file';
                         mediaItem.innerHTML = `
-                            <img src="/storage/works/${img}" alt="Current ${mediaIndex}" style="max-width: 180px; max-height: 120px; border-radius: 8px; object-fit: cover;">
+                            <img loading="lazy" src="/storage/works/${img}" alt="Current ${mediaIndex}" style="max-width: 180px; max-height: 120px; border-radius: 8px; object-fit: cover;">
                             <div class="media-type-badge image-badge">
                                 <svg viewBox="0 0 24 24" width="12" height="12">
                                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="1" fill="none"/>
@@ -5734,7 +5734,7 @@ function refreshWorkImagesPreview() {
             const previewItem = document.createElement('div');
             previewItem.className = 'image-preview-item';
             previewItem.innerHTML = `
-                <img src="${e.target.result}" alt="Preview ${index + 1}">
+                <img loading="lazy" src="${e.target.result}" alt="Preview ${index + 1}">
                 <button type="button" class="image-preview-remove" onclick="removeWorkImage(${index})">
                     <svg viewBox="0 0 24 24" width="14" height="14">
                         <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/>
@@ -6166,7 +6166,7 @@ function refreshWorkMediaPreview() {
                 const mediaItem = document.createElement('div');
                 mediaItem.className = 'media-preview-item existing-file';
                 mediaItem.innerHTML = `
-                    <img src="/storage/works/${img}" alt="Current ${mediaIndex}" style="max-width: 180px; max-height: 120px; border-radius: 8px; object-fit: cover;">
+                    <img loading="lazy" src="/storage/works/${img}" alt="Current ${mediaIndex}" style="max-width: 180px; max-height: 120px; border-radius: 8px; object-fit: cover;">
                     <div class="media-type-badge image-badge">
                         <svg viewBox="0 0 24 24" width="12" height="12">
                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="1" fill="none"/>
@@ -6259,7 +6259,7 @@ function refreshWorkMediaPreview() {
                 </div>
             `
                     : `
-                <img src="${fileUrl}" alt="Preview ${
+                <img loading="lazy" src="${fileUrl}" alt="Preview ${
                           mediaIndex
                       }" style="max-width: 180px; max-height: 120px; border-radius: 8px; object-fit: cover;">
                 <div class="media-type-badge image-badge">
@@ -6923,7 +6923,7 @@ function generateReviewHTML(review) {
         <div class="review-item" data-rating="${review.rating}" data-images="${review.images ? 'true' : 'false'}">
             <div class="review-header">
                 <div class="reviewer-avatar">
-                    <img src="${review.user.avatar || '/images/profile/default-avatar.png'}" alt="${review.user.name}">
+                    <img loading="lazy" src="${review.user.avatar || '/images/profile/default-avatar.png'}" alt="${review.user.name}">
                 </div>
                 <div class="reviewer-info">
                     <h4>${review.user.name}</h4>
@@ -7073,7 +7073,7 @@ function generateAdminReviewHTML(review) {
                     </div>
                 </div>
             ` : `
-                <img src="${filepath}" alt="Review image" onclick="viewImage('${filepath}')" style="cursor:pointer;">
+                <img loading="lazy" src="${filepath}" alt="Review image" onclick="viewImage('${filepath}')" style="cursor:pointer;">
             `;
         });
         mediaHTML += '</div>';
@@ -7083,7 +7083,7 @@ function generateAdminReviewHTML(review) {
         <div class="admin-review-card" data-id="${review.id}">
             <div class="admin-review-header">
                 <div class="reviewer-info">
-                    <img src="${review.user.avatar || '/images/profile/default-avatar.png'}" alt="${escapeHtml(review.user.name)}">
+                    <img loading="lazy" src="${review.user.avatar || '/images/profile/default-avatar.png'}" alt="${escapeHtml(review.user.name)}">
                     <div>
                         <h4>${escapeHtml(review.user.name)}</h4>
                         <p>${escapeHtml(review.user.email)}</p>
