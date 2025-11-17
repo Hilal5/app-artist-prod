@@ -16,14 +16,21 @@ class CommissionController extends Controller
      */
     public function index()
     {
-        $commissions = Commission::orderBy('created_at', 'desc')->get();
+        // Cek jika user adalah guest atau bukan admin, hanya tampilkan yang active
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            $commissions = Commission::where('is_active', true)
+                ->orderBy('created_at', 'desc')
+                ->get();
+        } else {
+            // Admin bisa lihat semua
+            $commissions = Commission::orderBy('created_at', 'desc')->get();
+        }
         
-        // Get global status dengan error handling
         try {
             $statusSetting = CommissionSetting::where('key', 'global_status')->first();
             $globalStatus = $statusSetting ? $statusSetting->value : 'open';
         } catch (\Exception $e) {
-            $globalStatus = 'open'; // default jika error
+            $globalStatus = 'open';
         }
         
         return response()->json([
