@@ -343,7 +343,7 @@
     <x-auth.forgot-password />
 
     <div id="chibiLottie" class="chibi-lottie">
-        <img id="chibiImage" 
+        <img loading="lazy" id="chibiImage" 
             src="{{ asset('images/cat/cat-update-base-gif-unscreen.gif') }}" 
             alt="Chibi Character"
             draggable="false">
