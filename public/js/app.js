@@ -7577,13 +7577,17 @@ window.blockUser = blockUser;
 window.deleteConversation = deleteConversation;
 
 
-
 class ChibiInteractive {
     constructor() {
         this.chibi = document.getElementById("chibiLottie");
         this.chibiImg = document.getElementById("chibiImage");
+        this.tooltip = document.getElementById("chibiTooltip"); // ✅ TOOLTIP ELEMENT
 
-        if (!this.chibi || !this.chibiImg) return;
+        // ✅ CHECK JIKA ELEMENT TIDAK ADA, BERHENTI
+        if (!this.chibi || !this.chibiImg) {
+            console.log("Chibi elements not found");
+            return;
+        }
 
         // GIF paths
         this.gifs = {
@@ -7592,12 +7596,26 @@ class ChibiInteractive {
             react: "/images/cat/cat-reaction1-unscreen.gif",
         };
 
+        // ✅ MESSAGE CONFIG
+        this.messages = [
+            "Hi!! Welcome to my website!! I'm Orange, nice to meet you.",
+            "Drag me around! I love to explore~",
+            "Click on me for a surprise! 🎉",
+            "What brings you here today? 😊",
+            "I see you're having fun with me!",
+            "This website is awesome, right?",
+            "Don't be shy, let's play together!",
+            "I'm your little companion here!",
+            "Wow, you found me! Hello there!",
+            "Life is better with cute chibis! 💕"
+        ];
+
         // State
         this.isDragging = false;
         this.isReacting = false;
         this.isFalling = false;
         this.isHovering = false;
-        this.wasClickOnImage = false; // ✅ TRACK APAKAH KLIK DI IMAGE
+        this.wasClickOnImage = false;
         this.startX = 0;
         this.startY = 0;
         this.offsetX = 0;
@@ -7608,10 +7626,53 @@ class ChibiInteractive {
         this.autoWalkInterval = null;
         this.clickTimeout = null;
         this.holdTimer = null;
+        this.tooltipInterval = null;
+        this.currentMessageIndex = 0;
 
         this.init();
         this.applyGreenScreenRemoval();
         this.startAutoWalk();
+        this.startTooltipCycle();
+    }
+
+    // ✅ METHOD UNTUK TOOLTIP - LEBIH SIMPLE
+    showTooltip() {
+        if (!this.tooltip || this.isDragging) return;
+
+        // Update message text
+        this.tooltip.textContent = this.messages[this.currentMessageIndex];
+        
+        // Show tooltip
+        this.tooltip.classList.add('show');
+
+        // Auto hide after 4 seconds
+        setTimeout(() => {
+            this.hideTooltip();
+        }, 4000);
+    }
+
+    hideTooltip() {
+        if (!this.tooltip) return;
+        this.tooltip.classList.remove('show');
+    }
+
+    nextMessage() {
+        this.currentMessageIndex = (this.currentMessageIndex + 1) % this.messages.length;
+    }
+
+    startTooltipCycle() {
+        // Show first tooltip after 2 seconds
+        setTimeout(() => {
+            this.showTooltip();
+        }, 2000);
+
+        // Cycle messages every 10 seconds
+        this.tooltipInterval = setInterval(() => {
+            if (!this.isDragging && !this.isReacting && !this.isHovering) {
+                this.nextMessage();
+                this.showTooltip();
+            }
+        }, 10000);
     }
 
     init() {
@@ -7637,7 +7698,7 @@ class ChibiInteractive {
         this.chibiImg.addEventListener("mousedown", (e) => {
             e.preventDefault();
             e.stopPropagation();
-            this.wasClickOnImage = true; // ✅ MARK BAHWA KLIK DI IMAGE
+            this.wasClickOnImage = true;
             this.handlePressStart(e.clientX, e.clientY);
         });
 
@@ -7654,14 +7715,12 @@ class ChibiInteractive {
                 this.holdTimer = null;
             }
 
-            // ✅ CEK APAKAH KLIK AWAL DI IMAGE
             if (!this.isDragging && this.wasClickOnImage) {
                 this.react();
             } else if (this.isDragging) {
                 this.stopDrag();
             }
 
-            // ✅ RESET FLAG
             this.wasClickOnImage = false;
         });
 
@@ -7669,7 +7728,7 @@ class ChibiInteractive {
             e.preventDefault();
             e.stopPropagation();
             this.isHovering = true;
-            this.wasClickOnImage = true; // ✅ MARK TOUCH DI IMAGE
+            this.wasClickOnImage = true;
             const touch = e.touches[0];
             this.handlePressStart(touch.clientX, touch.clientY);
         });
@@ -7694,14 +7753,12 @@ class ChibiInteractive {
 
             this.isHovering = false;
 
-            // ✅ CEK APAKAH TOUCH AWAL DI IMAGE
             if (!this.isDragging && this.wasClickOnImage) {
                 this.react();
             } else if (this.isDragging) {
                 this.stopDrag();
             }
 
-            // ✅ RESET FLAG
             this.wasClickOnImage = false;
         });
 
@@ -7713,6 +7770,7 @@ class ChibiInteractive {
             clearTimeout(this.holdTimer);
         }
 
+        this.hideTooltip();
         this.startX = clientX;
         this.startY = clientY;
 
@@ -7802,6 +7860,10 @@ class ChibiInteractive {
 
         setTimeout(() => {
             this.chibi.classList.remove("walking");
+            if (Math.random() > 0.7) {
+                this.nextMessage();
+                this.showTooltip();
+            }
         }, duration);
     }
 
@@ -7811,6 +7873,9 @@ class ChibiInteractive {
         this.isReacting = true;
         this.chibi.classList.add("reacting");
         this.changeGif("react");
+
+        this.nextMessage();
+        this.showTooltip();
 
         const clickSound = document.getElementById("chibiClickSound");
         if (clickSound) {
@@ -7834,6 +7899,7 @@ class ChibiInteractive {
         this.isDragging = true;
         this.chibi.classList.add("grabbing");
         this.changeGif("lifted");
+        this.hideTooltip();
 
         clearInterval(this.autoWalkInterval);
         this.chibi.classList.remove("walking");
@@ -7873,10 +7939,21 @@ class ChibiInteractive {
             this.chibi.style.transition =
                 "transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease, bottom 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)";
 
+            setTimeout(() => {
+                this.nextMessage();
+                this.showTooltip();
+            }, 1000);
+
             if (!this.isHovering) {
                 this.startAutoWalk();
             }
         }, 600);
+    }
+
+    destroy() {
+        if (this.tooltipInterval) {
+            clearInterval(this.tooltipInterval);
+        }
     }
 }
 

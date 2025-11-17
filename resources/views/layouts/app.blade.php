@@ -347,8 +347,10 @@
             src="{{ asset('images/cat/cat-update-base-gif-unscreen.gif') }}" 
             alt="Chibi Character"
             draggable="false">
+        <!-- ✅ SIMPLE TOOLTIP -->
+        <div id="chibiTooltip" class="chibi-tooltip"></div>
     </div>
-
+    
     @auth
     <div id="userData" data-user='{"is_admin": {{ Auth::user()->isAdmin() ? "true" : "false" }}, "name": "{{ Auth::user()->name }}" }' style="display: none;"></div>
     @endauth
