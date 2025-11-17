@@ -63,27 +63,27 @@ function toggleTheme() {
         themeToggle.textContent = "☀️";
         
         // Set light background pattern
-        // body.style.backgroundImage = "url('/images/doodle-bg.png')";
+        body.style.backgroundImage = "url('/images/doodle-bg.png')";
     } else {
         body.classList.remove("light-mode");
         body.classList.add("dark-mode");
         themeToggle.textContent = "🌙";
         
         // Set dark background pattern
-        // body.style.backgroundImage = "url('/images/doodle-bg.png')";
+        body.style.backgroundImage = "url('/images/doodle-bg.png')";
     }
 }
 
 // Set initial background on page load
-// document.addEventListener('DOMContentLoaded', function() {
-//     const body = document.body;
-//     if (body.classList.contains("dark-mode")) {
-//         body.style.backgroundImage = "url('/images/doodle-bg.png')";
-//         body.style.backgroundRepeat = "repeat";
-//         body.style.backgroundSize = "412.5px 749.25px";
-//         body.style.backgroundAttachment = "fixed";
-//     }
-// });
+document.addEventListener('DOMContentLoaded', function() {
+    const body = document.body;
+    if (body.classList.contains("dark-mode")) {
+        body.style.backgroundImage = "url('/images/doodle-bg.png')";
+        body.style.backgroundRepeat = "repeat";
+        body.style.backgroundSize = "412.5px 749.25px";
+        body.style.backgroundAttachment = "fixed";
+    }
+});
 
 // Social Media Function
 function openSocial(platform) {
@@ -3869,6 +3869,12 @@ function viewAttachment(src, type) {
                     <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/>
                 </svg>
             </button>
+            <a href="${src}" download class="attachment-modal-download">
+                <svg viewBox="0 0 24 24" width="20" height="20">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" fill="none"/>
+                </svg>
+            
+            </a>
         </div>
     `;
     
