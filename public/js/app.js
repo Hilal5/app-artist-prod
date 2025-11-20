@@ -2736,8 +2736,8 @@ function showGalleryLightbox() {
         
         <button class="gallery-close" onclick="closeGalleryLightbox()">
             <svg viewBox="0 0 24 24" width="24" height="24">
-                <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/>
-                <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/>
+                <line x1="18" y1="6" x2="6" y2="18" stroke="white" stroke-width="2"/>
+                <line x1="6" y1="6" x2="18" y2="18" stroke="white" stroke-width="2"/>
             </svg>
         </button>
         
@@ -2748,7 +2748,7 @@ function showGalleryLightbox() {
                 ? `
             <button class="gallery-nav prev" onclick="prevGalleryImage()">
                 <svg viewBox="0 0 24 24" width="32" height="32">
-                    <polyline points="15 18 9 12 15 6" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <polyline points="15 18 9 12 15 6" stroke="white" stroke-width="2" fill="none"/>
                 </svg>
             </button>
         `
@@ -2760,7 +2760,7 @@ function showGalleryLightbox() {
                 ? `
             <button class="gallery-nav next" onclick="nextGalleryImage()">
                 <svg viewBox="0 0 24 24" width="32" height="32">
-                    <polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <polyline points="9 18 15 12 9 6" stroke="white" stroke-width="2" fill="none"/>
                 </svg>
             </button>
         `
