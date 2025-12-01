@@ -122,3 +122,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/chat/block-user', [ChatController::class, 'blockUser']);
     Route::delete('/chat/conversation', [ChatController::class, 'deleteConversation']);
 });
+
+Route::get('/refresh-csrf', function() {
+    return response()->json([
+        'csrf_token' => csrf_token()
+    ]);
+});
