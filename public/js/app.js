@@ -4459,7 +4459,7 @@ async function sendCommissionOrder(commission, paymentMethod) {
         }
 
         // Reload messages
-        await loadChatMessages(currentChatUserId, "Administrator");
+        await loadChatMessages(currentChatUserId, "Artist");
     } catch (error) {
         debugError("Error sending order", error);
         alert("❌ Failed to send order. Please try again.");
